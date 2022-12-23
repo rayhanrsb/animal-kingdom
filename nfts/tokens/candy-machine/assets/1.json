@@ -1,0 +1,20 @@
+{
+    "name": "Monkey",
+    "symbol": "ALKM",
+    "description": "A cute monkey",
+    "image": "1.png",
+    "attributes": [
+      {
+        "trait_type": "Animal",
+        "value": "Monkey"
+      }
+    ],
+    "properties": {
+      "files": [
+        {
+          "uri": "1.png",
+          "type": "image/png"
+        }
+      ]
+    }
+  }
