@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "name": "Ocean",
     "symbol": "ALKM",
@@ -18,25 +17,4 @@
         }
       ]
     }
-=======
-{
-    "name": "Ocean",
-    "symbol": "ALKM",
-    "description": "A beatiful ocean",
-    "image": "4.png",
-    "attributes": [
-      {
-        "trait_type": "Habitat",
-        "value": "Ocean"
-      }
-    ],
-    "properties": {
-      "files": [
-        {
-          "uri": "4.png",
-          "type": "image/png"
-        }
-      ]
-    }
->>>>>>> 205c421d3d8d866de5a33a3100d4134d345c9951
   }
