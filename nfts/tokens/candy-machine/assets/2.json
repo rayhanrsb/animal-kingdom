@@ -1,0 +1,20 @@
+{
+    "name": "Forest",
+    "symbol": "ALKM",
+    "description": "A vibrant forest",
+    "image": "2.png",
+    "attributes": [
+      {
+        "trait_type": "Habitat",
+        "value": "Forest"
+      }
+    ],
+    "properties": {
+      "files": [
+        {
+          "uri": "2.png",
+          "type": "image/png"
+        }
+      ]
+    }
+  }
