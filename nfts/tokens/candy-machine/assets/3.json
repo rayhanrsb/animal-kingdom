@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Lion",
     "symbol": "ALKM",
@@ -17,4 +18,25 @@
         }
       ]
     }
+=======
+{
+    "name": "Lion",
+    "symbol": "ALKM",
+    "description": "A royal lion",
+    "image": "3.png",
+    "attributes": [
+      {
+        "trait_type": "Animal",
+        "value": "Lion"
+      }
+    ],
+    "properties": {
+      "files": [
+        {
+          "uri": "3.png",
+          "type": "image/png"
+        }
+      ]
+    }
+>>>>>>> 205c421d3d8d866de5a33a3100d4134d345c9951
   }

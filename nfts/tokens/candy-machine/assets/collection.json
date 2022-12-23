@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Animal Kingdom NFT Collection",
     "symbol": "ALKM",
@@ -12,4 +13,20 @@
         }
         ]
     }
+=======
+{
+    "name": "Animal Kingdom NFT Collection",
+    "symbol": "ALKM",
+    "description": "Collection of NFTs representing real places and animals that will be protected and nurtured with funds from the NFT sale.",
+    "image": "collection.png",
+    "attributes": [],
+    "properties": {
+        "files": [
+        {
+            "uri": "collection.png",
+            "type": "image/png"
+        }
+        ]
+    }
+>>>>>>> 205c421d3d8d866de5a33a3100d4134d345c9951
 }

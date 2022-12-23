@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Forest",
     "symbol": "ALKM",
@@ -17,4 +18,25 @@
         }
       ]
     }
+=======
+{
+    "name": "Forest",
+    "symbol": "ALKM",
+    "description": "A vibrant forest",
+    "image": "2.png",
+    "attributes": [
+      {
+        "trait_type": "Habitat",
+        "value": "Forest"
+      }
+    ],
+    "properties": {
+      "files": [
+        {
+          "uri": "2.png",
+          "type": "image/png"
+        }
+      ]
+    }
+>>>>>>> 205c421d3d8d866de5a33a3100d4134d345c9951
   }
