@@ -11,7 +11,12 @@ const TOKEN_DESCRIPTION = "Tokens used in activities that protect our planet";
 const TOKEN_IMAGE_NAME = "almk-icon.png";
 const TOKEN_IMAGE_PATH = `tokens/alkm/assets/${TOKEN_IMAGE_NAME}`;
 
-async function createAlmkToken(connection: web3.Connection, payer: web3.Keypair) {
+async function createAlmkToken(connection: web3.Connection, payer: web3.Keypair, programId: web3.PublicKey) {
+
+    const [mintAuth] = await web3.PublicKey.findProgramAddress(
+        [Buffer.from("mint")],
+        programId
+    )
 
     const tokenMint = await token.createMint(connection, payer, payer.publicKey, payer.publicKey, 2);
 
@@ -70,6 +75,15 @@ async function createAlmkToken(connection: web3.Connection, payer: web3.Keypair)
         [payer]
     );
 
+    await token.setAuthority(
+        connection,
+        payer,
+        tokenMint,
+        payer.publicKey,
+        token.AuthorityType.MintTokens,
+        mintAuth
+      )
+
     fs.writeFileSync(
         "tokens/alkm/cache.json",
         JSON.stringify({
@@ -89,7 +103,7 @@ async function main() {
     const payer = await initializeKeypair(connection);
     console.log("Public key is:", payer.publicKey);
 
-    // await createAlmkToken(connection, payer);
+    await createAlmkToken(connection, payer, new web3.PublicKey("DtjytkXbXgEznoBWJMufeGxRPbThhn47kKU418U8as1g"));
 };
 
 main()

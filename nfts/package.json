@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.10.5",
     "@metaplex-foundation/js": "^0.17.12",
     "@next/font": "13.0.7",
+    "@project-serum/borsh": "^0.2.5",
     "@solana/spl-token": "^0.3.6",
     "@solana/wallet-adapter-base": "^0.9.20",
     "@solana/wallet-adapter-react": "^0.15.26",
