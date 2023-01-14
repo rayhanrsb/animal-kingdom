@@ -8,6 +8,8 @@ const Home: NextPage = () => {
 
   const { connected } = useWallet();
 
+  
+
   return (
     <MainLayout>
       {connected ? <Connected /> : <Disconnected />}
