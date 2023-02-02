@@ -1,21 +1,21 @@
-use borsh::BorshSerialize;
 use crate::error::StakeError;
 use crate::instruction::StakeInstruction;
 use crate::state::StakeAccountState;
+use borsh::BorshSerialize;
+use mpl_token_metadata::ID as mpl_metadata_program_id;
 use solana_program::{
     account_info::{next_account_info, AccountInfo},
     borsh::try_from_slice_unchecked,
+    clock::Clock,
     entrypoint::ProgramResult,
     msg,
-    program::{invoke_signed, invoke},
+    program::{invoke, invoke_signed},
     program_error::ProgramError,
+    program_pack::IsInitialized,
     pubkey::Pubkey,
     system_instruction,
     sysvar::{rent::Rent, Sysvar},
-    program_pack::{IsInitialized, Sealed},
-    clock::Clock
 };
-use mpl_token_metadata::ID as mpl_metadata_program_id;
 use spl_token::ID as spl_token_program_id;
 
 pub fn process_instruction(
@@ -28,13 +28,13 @@ pub fn process_instruction(
     match instruction {
         StakeInstruction::InitializeStakeAccount => {
             process_initialize_stake_account(program_id, accounts)?;
-        },
+        }
         StakeInstruction::Stake => {
             process_stake(program_id, accounts)?;
-        },
+        }
         StakeInstruction::Redeem => {
             process_redeem(program_id, accounts)?;
-        },
+        }
         StakeInstruction::Unstake => {
             process_unstake(program_id, accounts)?;
         }
@@ -44,12 +44,12 @@ pub fn process_instruction(
 
 pub fn process_initialize_stake_account(
     program_id: &Pubkey,
-    accounts: &[AccountInfo]
+    accounts: &[AccountInfo],
 ) -> ProgramResult {
     // In the completed version, it would be good if we did some checks on the nft account to check
     // That is it an appropriate ATA belonging to the initialiser. Maybe we could also offer a way
     // For the user to change their designated withdraw account in the future
-    
+
     // Iterate over accounts
     let account_info_iter = &mut accounts.iter();
     let initializer = next_account_info(account_info_iter)?;
@@ -124,11 +124,7 @@ pub fn process_initialize_stake_account(
     Ok(())
 }
 
-pub fn process_stake(
-    program_id: &Pubkey,
-    accounts: &[AccountInfo]
-) -> ProgramResult {
-
+pub fn process_stake(program_id: &Pubkey, accounts: &[AccountInfo]) -> ProgramResult {
     // Iterate over accounts
     let account_info_iter = &mut accounts.iter();
     let initializer = next_account_info(account_info_iter)?;
@@ -148,12 +144,12 @@ pub fn process_stake(
 
     // Deriving PDA to be the authority to freeze the NFT while it is staked
     let (delegated_auth_pda, delegate_bump) =
-    Pubkey::find_program_address(&[b"authority"], program_id);
+        Pubkey::find_program_address(&[b"authority"], program_id);
     if delegated_auth_pda != *program_authority.key {
         msg!("Invalid seeds for PDA");
         return Err(StakeError::InvalidPDA.into());
     }
-    
+
     // Derive PDA which stores state of the stake
     let (stake_state_pda, _bump_seed) = Pubkey::find_program_address(
         &[initializer.key.as_ref(), nft_account.key.as_ref()],
@@ -201,8 +197,6 @@ pub fn process_stake(
         &[&[b"authority", &[delegate_bump]]],
     )?;
 
-    
-
     msg!("unpacking state account");
     let mut account_data =
         try_from_slice_unchecked::<StakeAccountState>(&stake_state.data.borrow()).unwrap();
@@ -213,7 +207,7 @@ pub fn process_stake(
         msg!("Account not initialized");
         return Err(StakeError::UnitializedAccount.into());
     }
-    
+
     // Security - Check that the initializer account is the same as at initialization
     if account_data.user_account != *initializer.key {
         msg!("The signer/user is not the same initializer who created the stake");
@@ -235,7 +229,7 @@ pub fn process_stake(
     let clock = Clock::get()?;
     let time_staked = clock.unix_timestamp;
 
-   msg!("Staked commenced at {}", time_staked);
+    msg!("Staked commenced at {}", time_staked);
 
     account_data.is_initialized = true;
     account_data.currently_staked = true;
@@ -246,16 +240,11 @@ pub fn process_stake(
     msg!("serializing account");
     account_data.serialize(&mut &mut stake_state.data.borrow_mut()[..])?;
     msg!("state account serialized");
-    
-    
+
     Ok(())
 }
 
-pub fn process_redeem(
-    program_id: &Pubkey,
-    accounts: &[AccountInfo]
-) -> ProgramResult {
-    
+pub fn process_redeem(program_id: &Pubkey, accounts: &[AccountInfo]) -> ProgramResult {
     // Iterate over accounts
     let account_info_iter = &mut accounts.iter();
     let user = next_account_info(account_info_iter)?;
@@ -273,7 +262,7 @@ pub fn process_redeem(
     }
 
     // Derive PDA address
-    let (stake_state_pda, bump_seed) = Pubkey::find_program_address(
+    let (stake_state_pda, _bump_seed) = Pubkey::find_program_address(
         &[user.key.as_ref(), nft_token_account.key.as_ref()],
         program_id,
     );
@@ -357,15 +346,11 @@ pub fn process_redeem(
     msg!("serializing account");
     account_data.serialize(&mut &mut stake_state.data.borrow_mut()[..])?;
     msg!("state account serialized");
-    
-    
+
     Ok(())
 }
 
-pub fn process_unstake(
-    program_id: &Pubkey,
-    accounts: &[AccountInfo]
-) -> ProgramResult {
+pub fn process_unstake(program_id: &Pubkey, accounts: &[AccountInfo]) -> ProgramResult {
     // When this program is extended to become the transfer authority for the NFT, this function will
     // need to transfer the transfer authority back to the user
 
@@ -390,7 +375,7 @@ pub fn process_unstake(
     }
 
     // Derive PDA address
-    let (stake_state_pda, bump_seed) = Pubkey::find_program_address(
+    let (stake_state_pda, _bump_seed) = Pubkey::find_program_address(
         &[user.key.as_ref(), nft_token_account.key.as_ref()],
         program_id,
     );
@@ -404,14 +389,14 @@ pub fn process_unstake(
     let (delegated_auth_pda, delegate_bump) =
         Pubkey::find_program_address(&[b"authority"], program_id);
     if delegated_auth_pda != *program_authority.key {
-            msg!("Invalid seeds for PDA");
-            return Err(StakeError::InvalidPDA.into());
-        }
+        msg!("Invalid seeds for PDA");
+        return Err(StakeError::InvalidPDA.into());
+    }
 
     let (stake_auth_pda, auth_bump) = Pubkey::find_program_address(&[b"mint"], program_id);
     if *stake_authority.key != stake_auth_pda {
-            msg!("Invalid stake mint authority!");
-            return Err(StakeError::InvalidPDA.into());
+        msg!("Invalid stake mint authority!");
+        return Err(StakeError::InvalidPDA.into());
     }
 
     // Unpack state account
@@ -483,7 +468,11 @@ pub fn process_unstake(
     let clock = Clock::get()?;
     let withdraw_time = clock.unix_timestamp;
     let redeem_amount = 100 * withdraw_time;
-    msg!("Withdrawn at {}, redeemed {} tokens", withdraw_time, redeem_amount);
+    msg!(
+        "Withdrawn at {}, redeemed {} tokens",
+        withdraw_time,
+        redeem_amount
+    );
 
     invoke_signed(
         &spl_token::instruction::mint_to(
@@ -509,6 +498,6 @@ pub fn process_unstake(
     msg!("serializing account");
     account_data.serialize(&mut &mut stake_state.data.borrow_mut()[..])?;
     msg!("state account serialized");
-    
+
     Ok(())
 }

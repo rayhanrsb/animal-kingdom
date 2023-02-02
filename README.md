@@ -1,5 +1,9 @@
 # Welcome to Animal Kingdom
 
+## Notice
+
+I am currently upgrading this project with a new Anchor program and a new Next.js front-end
+
 ## Overview
 
 This is a project exploring the potential of NFTs and DAOs on Solana for the protection of nature.

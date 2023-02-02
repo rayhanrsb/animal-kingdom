@@ -1,0 +1,201 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 2.617924rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.618rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+.small {
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+button {
+  width: 250px;
+  height: 55px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.white {
+  color: #fbfeff;
+}
+
+.white-background {
+  background-color: #fbfeff;
+}
+
+.light-green {
+  color: #a0e3ba;
+}
+
+.light-green-background {
+  background-color: #a0e3ba;
+}
+
+.medium-green {
+  color: #0c6b56;
+}
+
+.medium-green-background {
+  background-color: #0c6b56;
+}
+
+.dark-green {
+  color: #0d3644;
+}
+
+.dark-green-background {
+  background-color: #0d3644;
+}
+
+/* Header */
+header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0px 40px;
+}
+
+.wallet-adapter-button-trigger {
+  width: 250px;
+  height: 55px;
+  color: #fbfeff;
+  background-color: #0c6b56;
+  border-radius: 10px;
+}
+
+/* Hero */
+#hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 100px 100px 100px;
+  gap: 40px;
+  text-align: center;
+}
+
+/* NFTs */
+
+#nfts-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 0px 140px 0px;
+  /* overflow: scroll; */
+}
+
+.nft-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0px;
+  gap: 40px;
+}
+
+.nft-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px;
+  overflow-x: scroll;
+  overflow-y: visible;
+}
+
+.nft {
+  width: 300px;
+  height: 380px;
+  margin: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  background: #fbfeff;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.nft > img {
+  width: 300px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.nft > .nft-text {
+  width: 100%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 20px;
+}
+
+.nft > .nft-text > .nft-details {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+}
+
+.nft > .nft-text > .nft-details > .nft-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 5px;
+}
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

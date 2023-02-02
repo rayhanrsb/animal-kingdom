@@ -10,7 +10,7 @@ pub enum StakeInstruction {
 
 impl StakeInstruction {
     pub fn unpack(input: &[u8]) -> Result<Self, ProgramError> {
-        let (&variant, rest) = input
+        let (&variant, _rest) = input
             .split_first()
             .ok_or(ProgramError::InvalidInstructionData)?;
         // let payload = StakePayload::try_from_slice(rest).unwrap();
