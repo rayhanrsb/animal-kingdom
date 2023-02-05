@@ -278,8 +278,7 @@ export default function DaoPage() {
             <h2>Active Elections:</h2>
             {workspace.nfts?.length === 0 && <Loading />}
             {elections.map((election) => (
-              <section key={election.date} className="election">
-                <h3>{new Date(Number(election.date) * 1000).toDateString()}</h3>
+              <section key={election.date} className="election-section">
                 {!walletAdapter.publicKey && (
                   <p>Please connect your wallet to see the election details</p>
                 )}
@@ -287,7 +286,10 @@ export default function DaoPage() {
                   <p>Please buy an NFT to see the election details and vote</p>
                 ) : null}
                 {ownedNfts?.map((nft) => (
-                  <>
+                  <section key={election.date} className="election">
+                    <h3>
+                      {new Date(Number(election.date) * 1000).toDateString()}
+                    </h3>
                     <p>
                       {existingVoteDetails.find(
                         (vote) =>
@@ -321,7 +323,7 @@ export default function DaoPage() {
                         nft={nft}
                       />
                     )}
-                  </>
+                  </section>
                 ))}
               </section>
             ))}

@@ -96,7 +96,6 @@ export default function NftPage() {
       new PublicKey(PROGRAM_ID)
     );
 
-
     const [nftPda, nftPdaBump] = web3.PublicKey.findProgramAddressSync(
       [Buffer.from(`nftPDA`), mintKey.toBuffer()],
       new PublicKey(PROGRAM_ID)
@@ -138,7 +137,6 @@ export default function NftPage() {
       systemProgram: SystemProgram.programId,
       payer: walletAdapter.publicKey,
     };
-
 
     const transferInstruction = await workspace.program.methods
       .transferNft(nft.json.name)
@@ -191,8 +189,11 @@ export default function NftPage() {
           <button
             className="medium-green-background white"
             onClick={handleBuyNft}
+            disabled={isConfirmingTransaction}
           >
-            Protect it for {nft.json.price ? nft.json.price : 1} Sol
+            {isConfirmingTransaction
+              ? "Loading..."
+              : `Protect it for ${nft.json.price ? nft.json.price : 1} Sol`}
           </button>
         </article>
       );

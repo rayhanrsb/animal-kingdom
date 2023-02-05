@@ -12,6 +12,7 @@ const Votes = ({
 }) => {
   const [votes, setVotes] = useState<object>({});
   const [remainingVotes, setRemainingVotes] = useState(100);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleVotesChange = (organisation: string, amount: number) => {
     const newObject = { ...votes, [organisation as keyof object]: amount };
@@ -27,6 +28,7 @@ const Votes = ({
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
+    setSubmitting(true);
     handleVote(votes, nft, Number(election.date), election);
   };
 
@@ -72,9 +74,9 @@ const Votes = ({
             : "red-background white"
         }
         onClick={handleVoteClick}
-        disabled={remainingVotes < 0}
+        disabled={remainingVotes < 0 || submitting}
       >
-        Submit vote
+        {submitting ? "Submitting..." : "Submit vote"}
       </button>
     </section>
   );

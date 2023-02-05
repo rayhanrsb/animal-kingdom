@@ -405,6 +405,15 @@ header > .buttons > a {
   text-align: center;
 }
 
+.election-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
 .election {
   padding: 40px 20px;
   width: 300px;
