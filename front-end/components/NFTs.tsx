@@ -67,7 +67,13 @@ const NFTs: FC = () => {
   return (
     <section id="nfts-section" className="white-background">
       {loading ? (
-        <Loading />
+        <>
+          <Loading />
+          <p>
+            The first time this loads it might take a bit longer - we appreciate
+            your patience :))
+          </p>
+        </>
       ) : (
         <section id="nfts-section" className="white-background">
           {/* oceansNfts section */}

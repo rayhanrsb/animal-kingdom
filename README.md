@@ -62,7 +62,7 @@ Integration of spl-governance and listing on realms.today.
 
 The Next.js front-end interface can be viewed in the /front-end directory.
 
-There are three pages in the `/pages` directory, `index.tsx` ("/"), `[mintKey].tsx` and `dao.tsx` ("/"). There are two context-providing components in the `/components` directory, `WalletContextProvider.tsx` which uses `@solana/wallet-adapter-react` to handle all the wallet-related logic and `WorkspaceProvider.tsx` which uses React's `createContext` hook to provide the entire application with access to the animal Kingdom `Program`, and `nfts`.
+There are three pages in the `/pages` directory, `index.tsx`, `[mintKey].tsx` and `dao.tsx`. There are two context-providing components in the `/components` directory, `WalletContextProvider.tsx` which uses `@solana/wallet-adapter-react` to handle all the wallet-related logic and `WorkspaceProvider.tsx` which uses React's `createContext` hook to provide the entire application with access to the animal Kingdom `Program`, and `nfts`.
 
 #### NFTs on the front-end
 

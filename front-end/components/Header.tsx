@@ -23,7 +23,7 @@ export default function Header() {
 
       <section className="buttons">
         <Link href="/">
-          <p>Home</p>
+          <p className="home-nav-button">Home</p>
         </Link>
         <Link href="/dao">
           <p>DAO</p>
