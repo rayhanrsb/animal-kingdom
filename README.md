@@ -107,6 +107,22 @@ In order to check whether a user has already voted, the app uses Anchor's functi
 
 The initial loading is extremely slow, because of the multiple fetches we have to do for each NFT. My top priority is making this faster.
 
+### The Tyepscript Script
+
+This can be viewed in the `/nfts-script` directory. Almost all the code is contained in the `index.ts` file. The remaining code in `initializeKeypair.ts` is helper code to provide the main script with a wallet.
+
+The script inside `index.ts` handles all of the sensitive interaction with the Solana program. The Solana program is configured to only accept sensitive function calls from the wallet that this script uses.
+
+From line 57 to line 90, all of the variable necessary for interacting with a single NFT are declared. This makes it easy for me to run scripts affecting different NFTs by simply changing the values here, at the top of the file.
+
+Throughout this file, the functions `createNft()`, `updateNft()`, `deleteNft()`,  `transferNft()`, `createElection()` and `createVote()` are defined. These functions derive the required accounts for the relevant program instruction and then call that instruction. These are called in the `main()` function. You will see the function calls commented out on lines 620-623.
+
+#### Next steps for the script
+
+Ideally, this script should not have to exist. In the early days of development, it is important for me to be able to keep control of sensitive functions in the Solana Program. However, as this project develops, I hope to be able to create secure decentralised governance workflows to manage the sensitive functions, so that the Animal Kingdom program can be completely managed by the Animal Kingdom DAO.
+
+As such, the next steps for this script is actually to start phasing it out and to replace it with decentraliseed governance workflows that will allow the community to manage sensitive program functions.
+
 ## Technologies used
 
 - Solana
