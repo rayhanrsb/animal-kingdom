@@ -14,17 +14,17 @@ function Home() {
   const { connection } = useConnection();
   const walletAdapter = useWallet();
 
-  // We want to be able to get the list of nfts regardless of whether the wallet is connected yet or not
-  // So depenging on whether the wallet is connected or not, we switch between using wallet-adapter-react and web3.js
-  const metaplex = useMemo(() => {
-    if (connection && walletAdapter) {
-      return Metaplex.make(connection).use(
-        walletAdapterIdentity(walletAdapter)
-      );
-    } else {
-      return Metaplex.make(connection);
-    }
-  }, [connection, walletAdapter]);
+  // // We want to be able to get the list of nfts regardless of whether the wallet is connected yet or not
+  // // So depenging on whether the wallet is connected or not, we switch between using wallet-adapter-react and web3.js
+  // const metaplex = useMemo(() => {
+  //   if (connection && walletAdapter) {
+  //     return Metaplex.make(connection).use(
+  //       walletAdapterIdentity(walletAdapter)
+  //     );
+  //   } else {
+  //     return Metaplex.make(connection);
+  //   }
+  // }, [connection, walletAdapter]);
 
   const handleGetStarted = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -71,7 +71,7 @@ function Home() {
             Get started
           </button>
         </section>
-        <NFTs metaplex={metaplex} connection={connection} />
+        <NFTs />
       </main>
     </>
   );

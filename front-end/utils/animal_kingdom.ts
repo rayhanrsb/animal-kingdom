@@ -1,0 +1,1381 @@
+export type AnimalKingdom = {
+  version: "0.1.0";
+  name: "animal_kingdom";
+  instructions: [
+    {
+      name: "initializeMintAuthority";
+      accounts: [
+        {
+          name: "mintAuthority";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "tokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "payer";
+          isMut: true;
+          isSigner: true;
+        }
+      ];
+      args: [];
+    },
+    {
+      name: "createMint";
+      accounts: [
+        {
+          name: "mint";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mintAuthority";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "tokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "nftPda";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "tokenAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "tokenMetadataProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "payer";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "associatedTokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "currentProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "organisationWallet";
+          isMut: true;
+          isSigner: false;
+        }
+      ];
+      args: [
+        {
+          name: "name";
+          type: "string";
+        }
+      ];
+    },
+    {
+      name: "createMetadata";
+      accounts: [
+        {
+          name: "mint";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "mintAuthority";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "tokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "metadata";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "tokenMetadataProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "payer";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "currentProgram";
+          isMut: false;
+          isSigner: false;
+        }
+      ];
+      args: [
+        {
+          name: "name";
+          type: "string";
+        },
+        {
+          name: "uri";
+          type: "string";
+        },
+        {
+          name: "sellerFeeBasisPoints";
+          type: "u16";
+        },
+        {
+          name: "symbol";
+          type: "string";
+        }
+      ];
+    },
+    {
+      name: "createMasterEdition";
+      accounts: [
+        {
+          name: "mint";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mintAuthority";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "tokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "metadata";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "tokenMetadataProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "payer";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "masterEdition";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "currentProgram";
+          isMut: false;
+          isSigner: false;
+        }
+      ];
+      args: [
+        {
+          name: "name";
+          type: "string";
+        }
+      ];
+    },
+    {
+      name: "deleteNft";
+      accounts: [
+        {
+          name: "metadata";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "nftPda";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mint";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "tokenAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "masterEdition";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "tokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "tokenMetadataProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "mintAuthority";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "currentProgram";
+          isMut: false;
+          isSigner: false;
+        }
+      ];
+      args: [
+        {
+          name: "name";
+          type: "string";
+        }
+      ];
+    },
+    {
+      name: "transferNft";
+      accounts: [
+        {
+          name: "projectAccount";
+          isMut: true;
+          isSigner: false;
+          docs: [
+            "CHECK - this is dangerous - need to implement PDAs to hold information about verified conservation project addresses"
+          ];
+        },
+        {
+          name: "treasuryAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "fromAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "toAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "authorityAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mint";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mintAuthority";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "currentProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "tokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "associatedTokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "payer";
+          isMut: true;
+          isSigner: true;
+        }
+      ];
+      args: [
+        {
+          name: "name";
+          type: "string";
+        }
+      ];
+    },
+    {
+      name: "createElection";
+      accounts: [
+        {
+          name: "electionPda";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mauritiusWildlifeProtection";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "mauritiusNatureProtectionSociety";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "mauritiusMarineLifeProtection";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "payer";
+          isMut: true;
+          isSigner: true;
+        }
+      ];
+      args: [
+        {
+          name: "dateOfElection";
+          type: "i64";
+        }
+      ];
+    },
+    {
+      name: "createVote";
+      accounts: [
+        {
+          name: "votePda";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "electionPda";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "mint";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mintAuthority";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "ataAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mauritiusWildlifeProtection";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "mauritiusNatureProtectionSociety";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "mauritiusMarineLifeProtection";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "currentProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "payer";
+          isMut: true;
+          isSigner: true;
+        }
+      ];
+      args: [
+        {
+          name: "nameOfNft";
+          type: "string";
+        },
+        {
+          name: "dateOfElection";
+          type: "i64";
+        },
+        {
+          name: "mauritiusWildlifeProtectionVote";
+          type: "u32";
+        },
+        {
+          name: "mauritiusNatureProtectionSocietyVote";
+          type: "u32";
+        },
+        {
+          name: "mauritiusMarineLifeProtectionVote";
+          type: "u32";
+        }
+      ];
+    }
+  ];
+  accounts: [
+    {
+      name: "nftPda";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "mint";
+            type: "publicKey";
+          },
+          {
+            name: "conservationAddress";
+            type: "string";
+          }
+        ];
+      };
+    },
+    {
+      name: "mintAuthority";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "desc";
+            type: "string";
+          }
+        ];
+      };
+    },
+    {
+      name: "treasury";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "desc";
+            type: "string";
+          }
+        ];
+      };
+    },
+    {
+      name: "election";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "desc";
+            type: "string";
+          },
+          {
+            name: "date";
+            type: "i64";
+          },
+          {
+            name: "organisations";
+            type: {
+              defined: "Organisations";
+            };
+          }
+        ];
+      };
+    },
+    {
+      name: "vote";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "desc";
+            type: "string";
+          },
+          {
+            name: "mint";
+            type: "publicKey";
+          },
+          {
+            name: "voter";
+            type: "publicKey";
+          },
+          {
+            name: "ata";
+            type: "publicKey";
+          },
+          {
+            name: "date";
+            type: "i64";
+          },
+          {
+            name: "vote";
+            type: {
+              defined: "Votes";
+            };
+          }
+        ];
+      };
+    }
+  ];
+  types: [
+    {
+      name: "Organisations";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "mauritiusWildlifeProtection";
+            type: {
+              defined: "Organisation";
+            };
+          },
+          {
+            name: "mauritiusNatureProtectionSociety";
+            type: {
+              defined: "Organisation";
+            };
+          },
+          {
+            name: "mauritiusMarineLifeProtection";
+            type: {
+              defined: "Organisation";
+            };
+          }
+        ];
+      };
+    },
+    {
+      name: "Organisation";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "name";
+            type: "string";
+          },
+          {
+            name: "address";
+            type: "publicKey";
+          },
+          {
+            name: "votes";
+            type: "u64";
+          }
+        ];
+      };
+    },
+    {
+      name: "Votes";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "mauritiusWildlifeProtection";
+            type: {
+              defined: "UserVote";
+            };
+          },
+          {
+            name: "mauritiusNatureProtectionSociety";
+            type: {
+              defined: "UserVote";
+            };
+          },
+          {
+            name: "mauritiusMarineLifeProtection";
+            type: {
+              defined: "UserVote";
+            };
+          }
+        ];
+      };
+    },
+    {
+      name: "UserVote";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "amount";
+            type: "u32";
+          },
+          {
+            name: "organisationName";
+            type: "string";
+          },
+          {
+            name: "organisationAddress";
+            type: "publicKey";
+          }
+        ];
+      };
+    },
+    {
+      name: "InvalidElectionError";
+      type: {
+        kind: "enum";
+        variants: [
+          {
+            name: "InvalidDate";
+          }
+        ];
+      };
+    }
+  ];
+  errors: [
+    {
+      code: 6000;
+      name: "VoteTooLarge";
+      msg: "Number number of votes cast is too high";
+    },
+    {
+      code: 6001;
+      name: "VoteNegative";
+      msg: "Number number of votes cast should not be negative";
+    },
+    {
+      code: 6002;
+      name: "ElectionClosed";
+      msg: "Election is closed - its date is in the past";
+    }
+  ];
+};
+
+export const IDL: AnimalKingdom = {
+  version: "0.1.0",
+  name: "animal_kingdom",
+  instructions: [
+    {
+      name: "initializeMintAuthority",
+      accounts: [
+        {
+          name: "mintAuthority",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "tokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "payer",
+          isMut: true,
+          isSigner: true,
+        },
+      ],
+      args: [],
+    },
+    {
+      name: "createMint",
+      accounts: [
+        {
+          name: "mint",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mintAuthority",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "tokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "nftPda",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "tokenAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "tokenMetadataProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "payer",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "associatedTokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "currentProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "organisationWallet",
+          isMut: true,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "name",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "createMetadata",
+      accounts: [
+        {
+          name: "mint",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "mintAuthority",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "tokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "metadata",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "tokenMetadataProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "payer",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "currentProgram",
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "name",
+          type: "string",
+        },
+        {
+          name: "uri",
+          type: "string",
+        },
+        {
+          name: "sellerFeeBasisPoints",
+          type: "u16",
+        },
+        {
+          name: "symbol",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "createMasterEdition",
+      accounts: [
+        {
+          name: "mint",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mintAuthority",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "tokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "metadata",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "tokenMetadataProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "payer",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "masterEdition",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "currentProgram",
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "name",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "deleteNft",
+      accounts: [
+        {
+          name: "metadata",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "nftPda",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mint",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "tokenAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "masterEdition",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "tokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "tokenMetadataProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "mintAuthority",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "currentProgram",
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "name",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "transferNft",
+      accounts: [
+        {
+          name: "projectAccount",
+          isMut: true,
+          isSigner: false,
+          docs: [
+            "CHECK - this is dangerous - need to implement PDAs to hold information about verified conservation project addresses",
+          ],
+        },
+        {
+          name: "treasuryAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "fromAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "toAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "authorityAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mint",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mintAuthority",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "currentProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "tokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "associatedTokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "payer",
+          isMut: true,
+          isSigner: true,
+        },
+      ],
+      args: [
+        {
+          name: "name",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "createElection",
+      accounts: [
+        {
+          name: "electionPda",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mauritiusWildlifeProtection",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "mauritiusNatureProtectionSociety",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "mauritiusMarineLifeProtection",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "payer",
+          isMut: true,
+          isSigner: true,
+        },
+      ],
+      args: [
+        {
+          name: "dateOfElection",
+          type: "i64",
+        },
+      ],
+    },
+    {
+      name: "createVote",
+      accounts: [
+        {
+          name: "votePda",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "electionPda",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "mint",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mintAuthority",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "ataAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mauritiusWildlifeProtection",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "mauritiusNatureProtectionSociety",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "mauritiusMarineLifeProtection",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "currentProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "payer",
+          isMut: true,
+          isSigner: true,
+        },
+      ],
+      args: [
+        {
+          name: "nameOfNft",
+          type: "string",
+        },
+        {
+          name: "dateOfElection",
+          type: "i64",
+        },
+        {
+          name: "mauritiusWildlifeProtectionVote",
+          type: "u32",
+        },
+        {
+          name: "mauritiusNatureProtectionSocietyVote",
+          type: "u32",
+        },
+        {
+          name: "mauritiusMarineLifeProtectionVote",
+          type: "u32",
+        },
+      ],
+    },
+  ],
+  accounts: [
+    {
+      name: "nftPda",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "mint",
+            type: "publicKey",
+          },
+          {
+            name: "conservationAddress",
+            type: "string",
+          },
+        ],
+      },
+    },
+    {
+      name: "mintAuthority",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "desc",
+            type: "string",
+          },
+        ],
+      },
+    },
+    {
+      name: "treasury",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "desc",
+            type: "string",
+          },
+        ],
+      },
+    },
+    {
+      name: "election",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "desc",
+            type: "string",
+          },
+          {
+            name: "date",
+            type: "i64",
+          },
+          {
+            name: "organisations",
+            type: {
+              defined: "Organisations",
+            },
+          },
+        ],
+      },
+    },
+    {
+      name: "vote",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "desc",
+            type: "string",
+          },
+          {
+            name: "mint",
+            type: "publicKey",
+          },
+          {
+            name: "voter",
+            type: "publicKey",
+          },
+          {
+            name: "ata",
+            type: "publicKey",
+          },
+          {
+            name: "date",
+            type: "i64",
+          },
+          {
+            name: "vote",
+            type: {
+              defined: "Votes",
+            },
+          },
+        ],
+      },
+    },
+  ],
+  types: [
+    {
+      name: "Organisations",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "mauritiusWildlifeProtection",
+            type: {
+              defined: "Organisation",
+            },
+          },
+          {
+            name: "mauritiusNatureProtectionSociety",
+            type: {
+              defined: "Organisation",
+            },
+          },
+          {
+            name: "mauritiusMarineLifeProtection",
+            type: {
+              defined: "Organisation",
+            },
+          },
+        ],
+      },
+    },
+    {
+      name: "Organisation",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "name",
+            type: "string",
+          },
+          {
+            name: "address",
+            type: "publicKey",
+          },
+          {
+            name: "votes",
+            type: "u64",
+          },
+        ],
+      },
+    },
+    {
+      name: "Votes",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "mauritiusWildlifeProtection",
+            type: {
+              defined: "UserVote",
+            },
+          },
+          {
+            name: "mauritiusNatureProtectionSociety",
+            type: {
+              defined: "UserVote",
+            },
+          },
+          {
+            name: "mauritiusMarineLifeProtection",
+            type: {
+              defined: "UserVote",
+            },
+          },
+        ],
+      },
+    },
+    {
+      name: "UserVote",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "amount",
+            type: "u32",
+          },
+          {
+            name: "organisationName",
+            type: "string",
+          },
+          {
+            name: "organisationAddress",
+            type: "publicKey",
+          },
+        ],
+      },
+    },
+    {
+      name: "InvalidElectionError",
+      type: {
+        kind: "enum",
+        variants: [
+          {
+            name: "InvalidDate",
+          },
+        ],
+      },
+    },
+  ],
+  errors: [
+    {
+      code: 6000,
+      name: "VoteTooLarge",
+      msg: "Number number of votes cast is too high",
+    },
+    {
+      code: 6001,
+      name: "VoteNegative",
+      msg: "Number number of votes cast should not be negative",
+    },
+    {
+      code: 6002,
+      name: "ElectionClosed",
+      msg: "Election is closed - its date is in the past",
+    },
+  ],
+};

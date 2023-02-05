@@ -70,19 +70,32 @@ button {
 /* Header */
 header {
   width: 100%;
-  height: 100px;
+  height: 140px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0px 40px;
 }
 
 .wallet-adapter-button-trigger {
-  width: 250px;
-  height: 55px;
-  color: #fbfeff;
-  background-color: #0c6b56;
-  border-radius: 10px;
+  width: 250px !important;
+  height: 55px !important;
+  color: #fbfeff !important;
+  background-color: #0c6b56 !important;
+  border-radius: 10px !important;
+  justify-content: center;
+}
+
+header > .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+header > .buttons > a {
+  text-decoration: none;
+  color: unset;
 }
 
 /* Hero */
@@ -128,6 +141,11 @@ header {
   overflow-y: visible;
 }
 
+.nft-row > a {
+  text-decoration: none;
+  color: unset;
+}
+
 .nft {
   width: 300px;
   height: 380px;
@@ -137,7 +155,7 @@ header {
   align-items: flex-start;
   padding: 0px;
   background: #fbfeff;
-  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.12);
   border-radius: 10px;
   cursor: pointer;
 }
@@ -198,4 +216,266 @@ header {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* View NFT page */
+#nft-details-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#nft-details-page > .loading {
+  padding-top: 150px;
+}
+
+#view-nft {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0px;
+  gap: 80px;
+}
+
+.nft-information {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  padding: 0px;
+  gap: 20px;
+  max-width: 1000px;
+  background: #fbfeff;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+
+.nft-information-image {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.nft-information-text {
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  gap: 40px;
+}
+
+.nft-information-category {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 20px;
+}
+
+.nft-information-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
+  padding: 0px;
+  gap: 80px;
+}
+
+.nft-information-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+}
+
+.nft-information-category > ul {
+  list-style-position: inside;
+}
+
+.protect-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 20px;
+}
+
+/* DAO */
+#dao-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 40px;
+  text-align: center;
+}
+
+.dao-intro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 100px;
+  gap: 40px;
+  text-align: center;
+}
+
+.elections {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0px;
+  gap: 40px;
+  text-align: center;
+}
+
+.election {
+  padding: 40px 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #fbfeff;
+  border-radius: 10px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.votes {
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #fbfeff;
+  border-radius: 10px;
+}
+
+.input-vote {
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background-color: #fbfeff;
+  border-radius: 10px;
+}
+
+.vote-slider {
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background-color: #fbfeff;
+  border-radius: 10px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 12px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 8px;
+  height: 25px;
+  border-radius: 10px;
+  background: #0c6b56;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #04aa6d;
+  cursor: pointer;
+}
+
+/* Loading */
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: #fbfeff;
+}
+
+/* Loading SVG */
+.spinner {
+  animation: rotator 1.4s linear infinite;
+}
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+.path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+@keyframes colors {
+  0% {
+    stroke: #0c6b56;
+  }
+  25% {
+    stroke: #34b53a;
+  }
+  50% {
+    stroke: #4339f2;
+  }
+  75% {
+    stroke: #a0e3ba;
+  }
+  100% {
+    stroke: #d10000;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
 }
