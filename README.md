@@ -10,7 +10,7 @@ This project uses NFTs to accomplish the former, and a DAO structure to accompli
 
 - NFTs - every single NFT on this platform represents a real-life piece of nature in need of protection, from animal families to sections of coral reef. The NFTs are not assets, they are conduits for donation. 50% of proceeds from an NFT sales go towards protection of the specific part of nature it represents. The other 50% goes into the DAO
 
-1. DAO - the holders of Animal Kingdom NFTs are eligible to vote every month on which environmental / societal system level causes to support.
+- DAO - the holders of Animal Kingdom NFTs are eligible to vote every month on which environmental / societal system level causes to support.
 
 This is how we manage to tackle both the micro and macro level changes are necessary for us to protect our planet.
 
@@ -34,6 +34,10 @@ Note on line 449 that I have implemented stringent additional security checks, e
 `#[account(mut, constraint = payer.key.to_string() == String::from("kq29PDUDGccE8WWACB76XVyn56TuozLfyGQ9NTDRyxH"))]`
 
 This protects the platform from malicious users creating fake NFTs to steal money from donors.
+
+#### Buying an NFT
+
+The `transfer_nft` function starting on line 224 is responsible for handling the transfer of an NFT. It handles sending 50% of the transaction to the DAO treasury, a PDA derived with `seeds = [b"treasury".as_ref()]`. It sends the other 50% to the relevant organisation's address. It then transfers the NFT from the ATA of the PDA which currently holds the token to the ATA of the payer's wallet.
 
 #### DAO elections and voting
 
