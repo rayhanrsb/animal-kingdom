@@ -107,6 +107,8 @@ In order to check whether a user has already voted, the app uses Anchor's functi
 
 The initial loading is extremely slow, because of the multiple fetches we have to do for each NFT. My top priority is making this faster.
 
+There are also currently several type errors throughout the codebase. For demo purposes, I have deployed anyway, but these must be addressed before the mainnet launch.
+
 ### The Tyepscript Script
 
 This can be viewed in the `/nfts-script` directory. Almost all the code is contained in the `index.ts` file. The remaining code in `initializeKeypair.ts` is helper code to provide the main script with a wallet.
