@@ -47,8 +47,6 @@ const Votes = ({
       .join(" ");
   };
 
-  console.log(votes);
-
   return (
     <section className="votes">
       <p className={remainingVotes >= 0 ? "medium-green" : "red"}>

@@ -75,8 +75,6 @@ const NFTs: FC = () => {
             <h2>Protect our oceans</h2>
             <section className="nft-row white-background">
               {oceanNfts.map((nft) => {
-                // console.log("displayed nft is:");
-                // console.log(nft.address.toString());
                 return (
                   <Link
                     href={`/${nft.mint.address.toString()}`}
@@ -111,8 +109,6 @@ const NFTs: FC = () => {
             <h2>Protect our forests</h2>
             <section className="nft-row white-background">
               {landNfts.map((nft) => {
-                console.log("displayed nft is:");
-                console.log(nft.address.toString());
                 return (
                   <Link
                     href={`/${nft.mint.address.toString()}`}
@@ -147,8 +143,6 @@ const NFTs: FC = () => {
             <h2>Protect animal lives</h2>
             <section className="nft-row white-background">
               {animalNfts.map((nft) => {
-                console.log("displayed nft is:");
-                console.log(nft.address.toString());
                 return (
                   <Link
                     href={`/${nft.mint.address.toString()}`}

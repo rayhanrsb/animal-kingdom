@@ -27,8 +27,6 @@ export default function NftPage() {
   useEffect(() => {
     if (!router.isReady) return;
     if (router.query.mintKey && typeof router.query.mintKey === "string") {
-      console.log("router.query.mintKey is:");
-      console.log(router.query.mintKey);
       // Check that the mint key in the router is a valid one and setMint to it, otherwise go back to root page
       try {
         const mintKeyPublicKey = new PublicKey(router.query.mintKey);
@@ -89,8 +87,6 @@ export default function NftPage() {
         new PublicKey(PROGRAM_ID)
       );
 
-    console.log("treasury key: ", treasuryKey.toString());
-
     const projectKey = new PublicKey(
       "EoXeTQoYCaskdP4UrkMx93A43NaUuUQtYDBeXj2HEtLQ"
     );
@@ -100,28 +96,23 @@ export default function NftPage() {
       new PublicKey(PROGRAM_ID)
     );
 
-    console.log("Mint key: ", mintKey.toString());
 
     const [nftPda, nftPdaBump] = web3.PublicKey.findProgramAddressSync(
       [Buffer.from(`nftPDA`), mintKey.toBuffer()],
       new PublicKey(PROGRAM_ID)
     );
 
-    console.log("NftPda key: ", nftPda.toString());
-
     const userATA = await getAssociatedTokenAddress(
       mintKey, // Token mint account
       walletAdapter.publicKey, // Owner of the account
       false // Allow the owner account to be a PDA (Program Derived Address)
     );
-    console.log("userATA key: ", userATA.toString());
 
     const programATA = await getAssociatedTokenAddress(
       mintKey, // Token mint account
       nftPda, // Owner of the account
       true // Allow the owner account to be a PDA (Program Derived Address)
     );
-    console.log("programAta key is: ", programATA.toBase58());
 
     const masterEdition = web3.PublicKey.findProgramAddressSync(
       [
@@ -148,16 +139,11 @@ export default function NftPage() {
       payer: walletAdapter.publicKey,
     };
 
-    console.log("workspace is:");
-    console.log(workspace);
 
     const transferInstruction = await workspace.program.methods
       .transferNft(nft.json.name)
       .accounts(accounts)
       .instruction();
-
-    console.log("transferInstruction is:");
-    console.log(transferInstruction);
 
     const transaction = new Transaction();
     transaction.add(transferInstruction);
@@ -242,9 +228,6 @@ export default function NftPage() {
     );
     // }
   };
-
-  console.log("nft is:");
-  console.log(nft);
 
   return (
     <section className="white-background" id="nft-details-page">

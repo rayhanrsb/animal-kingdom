@@ -38,8 +38,6 @@ export default function DaoPage() {
     workspace.program.account.election
       .fetch(electionPda)
       .then((electionPdaAccount) => {
-        console.log("election pda account is:");
-        console.log(electionPdaAccount);
         setElections([electionPdaAccount]);
       });
   }, [workspace]);
@@ -56,12 +54,8 @@ export default function DaoPage() {
       return;
     }
     const address = walletAdapter.publicKey;
-    console.log("address is:");
-    console.log(address.toString());
     const ownedNftArr: any[] = [];
     workspace.nfts.forEach((nft) => {
-      console.log("checking this NFT owned by:");
-      console.log(nft.owner);
       if (nft.owner.toString() === address.toString()) {
         ownedNftArr.push(nft);
       }
@@ -95,15 +89,10 @@ export default function DaoPage() {
         workspace.program.programId
       );
 
-      console.log("Mint key: ", mintKey.toString());
-
       const [electionPda, electionPdaBump] = PublicKey.findProgramAddressSync(
         [Buffer.from(`election`), Buffer.from(electionDate.toString())],
         workspace.program.programId
       );
-
-      console.log("election pda is:");
-      console.log(electionPda);
 
       const [votePda, votePdaBump] = PublicKey.findProgramAddressSync(
         [mintKey.toBuffer(), electionPda.toBuffer()],
@@ -113,8 +102,6 @@ export default function DaoPage() {
       workspace.program.account.vote
         .fetchNullable(votePda)
         .then((votePdaAccount) => {
-          console.log("vote pda is:");
-          console.log(votePdaAccount);
           if (votePdaAccount) {
             newVoteArr = [...newVoteArr, votePdaAccount];
             setVotes(newVoteArr);
@@ -146,38 +133,15 @@ export default function DaoPage() {
     electionDate: number,
     election: object
   ) => {
-    console.log("electionDate is:");
-    console.log(electionDate);
-
-    console.log("tokenName is:");
-    console.log(nft.json.name);
-
-    console.log("mauritiusWildlifeProtectionVote is:");
-    console.log(votes.mauritius_wildlife_protection);
-
-    console.log("mauritiusNatureProtectionSocietyVote is:");
-    console.log(votes.mauritius_nature_protection_society);
-
-    console.log("mauritiusMarineLifeProtectionVote is:");
-    console.log(votes.mauritius_marine_life_protection);
-
-    console.log("Mint key: ", nft.mint.address.toString());
-
     const [electionPda, electionPdaBump] = PublicKey.findProgramAddressSync(
       [Buffer.from(`election`), Buffer.from(electionDate.toString())],
       workspace.program.programId
     );
 
-    console.log("election pda is:");
-    console.log(electionPda);
-
     const [votePda, votePdaBump] = PublicKey.findProgramAddressSync(
       [nft.mint.address.toBuffer(), electionPda.toBuffer()],
       workspace.program.programId
     );
-
-    console.log("vote pda is:");
-    console.log(votePda);
 
     const TOKEN_METADATA_PROGRAM_ID = new PublicKey(
       "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
@@ -198,7 +162,6 @@ export default function DaoPage() {
       walletAdapter.publicKey, // Owner of the account
       false // Allow the owner account to be a PDA (Program Derived Address)
     );
-    console.log("ataAccount key: ", ataAccount.toString());
 
     const accounts = {
       votePda: votePda,
@@ -232,8 +195,6 @@ export default function DaoPage() {
     transaction.add(instruction);
     await sendAndConfirmTransaction(transaction);
 
-    console.log("transaction is:");
-    console.log(transaction);
     const newExistingVoteDetailsArr = [
       ...existingVoteDetails,
       {
@@ -284,14 +245,10 @@ export default function DaoPage() {
         "finalized"
       );
     } catch (error) {
-      console.log(error);
     } finally {
       setIsConfirmingTransaction(false);
     }
-    console.log("Transaction complete");
   };
-
-  console.log(ownedNfts);
 
   return (
     <>

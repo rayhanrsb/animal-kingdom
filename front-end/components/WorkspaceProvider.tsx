@@ -91,12 +91,6 @@ const WorkspaceProvider = ({ children }: any) => {
       });
   }, []);
 
-  console.log("nfts are:");
-  // nfts.forEach((nft) => {
-  //   console.log(nft.owner);
-  // });
-  console.log(nfts);
-
   const provider = new AnchorProvider(connection, wallet, {});
   setProvider(provider);
 
