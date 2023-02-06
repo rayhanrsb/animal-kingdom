@@ -557,3 +557,7 @@ header > .buttons > a {
     transform: rotate(450deg);
   }
 }
+
+.loading-message {
+  text-align: center;
+}

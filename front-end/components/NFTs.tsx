@@ -69,7 +69,7 @@ const NFTs: FC = () => {
       {loading ? (
         <>
           <Loading />
-          <p>
+          <p className="loading-message">
             The first time this loads it might take a bit longer - we appreciate
             your patience :))
           </p>
