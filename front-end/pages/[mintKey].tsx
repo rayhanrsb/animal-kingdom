@@ -185,7 +185,11 @@ export default function NftPage() {
     if (nft.owner.toString() === nftPda.toString()) {
       return (
         <article className="protect-cta">
-          <h3>Protect it now</h3>
+          {nft.json.attributes[0].trait_type === "Youth" ? (
+            <h3>Fund this student&apos;s education</h3>
+          ) : (
+            <h3>Protect it now</h3>
+          )}
           <button
             className="medium-green-background white"
             onClick={handleBuyNft}
@@ -193,7 +197,25 @@ export default function NftPage() {
           >
             {isConfirmingTransaction
               ? "Loading..."
-              : `Protect it for ${nft.json.price ? nft.json.price : 1} Sol`}
+              : nft.json.attributes[0].trait_type === "Youth"
+              ? `Educate for ${
+                  nft.json.attributes.find(
+                    (attribute) => attribute.trait_type === "price"
+                  )
+                    ? nft.json.attributes.find(
+                        (attribute) => attribute.trait_type === "price"
+                      ).value
+                    : 1
+                } Sol`
+              : `Protect it for ${
+                  nft.json.attributes.find(
+                    (attribute) => attribute.trait_type === "price"
+                  )
+                    ? nft.json.attributes.find(
+                        (attribute) => attribute.trait_type === "price"
+                      ).value
+                    : 1
+                } Sol`}
           </button>
         </article>
       );
@@ -254,23 +276,42 @@ export default function NftPage() {
                   </article>
                   <article className="nft-information-content">
                     <h3>Location</h3>
-                    <p>{nft.json.location ? nft.json.location : "Mauritius"}</p>
+                    <p>
+                      {nft.json.attributes.find(
+                        (attribute) => attribute.trait_type === "location"
+                      )
+                        ? nft.json.attributes.find(
+                            (attribute) => attribute.trait_type === "location"
+                          ).value
+                        : "Mauritius"}
+                    </p>
                   </article>
                 </section>
                 <section className="nft-information-row">
                   <article className="nft-information-content">
                     <h3>Organisation</h3>
                     <p>
-                      {nft.json.organisation
-                        ? nft.json.organisation
+                      {nft.json.attributes.find(
+                        (attribute) => attribute.trait_type === "organisation"
+                      )
+                        ? nft.json.attributes.find(
+                            (attribute) =>
+                              attribute.trait_type === "organisation"
+                          ).value
                         : "Mauritius Nature Protection Society"}
                     </p>
                   </article>
                   <article className="nft-information-content">
                     <h3>Type</h3>
                     <p>
-                      {nft.json.organisationType
-                        ? nft.json.organisationType
+                      {nft.json.attributes.find(
+                        (attribute) =>
+                          attribute.trait_type === "organisationType"
+                      )
+                        ? nft.json.attributes.find(
+                            (attribute) =>
+                              attribute.trait_type === "organisationType"
+                          ).value
                         : "NGO"}
                     </p>
                   </article>
@@ -278,11 +319,28 @@ export default function NftPage() {
                 <section className="nft-information-row">
                   <article className="nft-information-content">
                     <h3>Protect it for</h3>
-                    <p>{nft.json.price ? nft.json.price : 1} Sol</p>
+                    <p>
+                      {nft.json.attributes.find(
+                        (attribute) => attribute.trait_type === "price"
+                      )
+                        ? nft.json.attributes.find(
+                            (attribute) => attribute.trait_type === "price"
+                          ).value
+                        : 1}{" "}
+                      Sol
+                    </p>
                   </article>
                   <article className="nft-information-content">
                     <h3>Duration</h3>
-                    <p>{nft.json.duration ? nft.json.duration : "1 year"}</p>
+                    <p>
+                      {nft.json.attributes.find(
+                        (attribute) => attribute.trait_type === "duration"
+                      )
+                        ? nft.json.attributes.find(
+                            (attribute) => attribute.trait_type === "duration"
+                          ).value
+                        : "1 year"}
+                    </p>
                   </article>
                 </section>
               </article>
@@ -292,14 +350,43 @@ export default function NftPage() {
                   <article className="nft-information-content">
                     <h3>Carbon offset</h3>
                     <p>
-                      {nft.json.carbonOffset ? nft.json.carbonOffset : 0} tCO2
+                      {nft.json.attributes.find(
+                        (attribute) => attribute.trait_type === "carbonOffset"
+                      )
+                        ? nft.json.attributes.find(
+                            (attribute) =>
+                              attribute.trait_type === "carbonOffset"
+                          ).value === "N/A"
+                          ? nft.json.attributes.find(
+                              (attribute) =>
+                                attribute.trait_type === "carbonOffset"
+                            ).value
+                          : nft.json.attributes.find(
+                              (attribute) =>
+                                attribute.trait_type === "carbonOffset"
+                            ).value + " tCO2"
+                        : "0 tCO2"}
                     </p>
                   </article>
                   <article className="nft-information-content">
                     <h3>Animals saved</h3>
                     <p>
-                      {nft.json.animalsSaved ? nft.json.animalsSaved : 200}{" "}
-                      animals
+                      {nft.json.attributes.find(
+                        (attribute) => attribute.trait_type === "animalsSaved"
+                      )
+                        ? nft.json.attributes.find(
+                            (attribute) =>
+                              attribute.trait_type === "animalsSaved"
+                          ).value === "N/A"
+                          ? nft.json.attributes.find(
+                              (attribute) =>
+                                attribute.trait_type === "animalsSaved"
+                            ).value
+                          : nft.json.attributes.find(
+                              (attribute) =>
+                                attribute.trait_type === "animalsSaved"
+                            ).value + " animals"
+                        : "200 animals"}{" "}
                     </p>
                   </article>
                 </section>
@@ -309,19 +396,34 @@ export default function NftPage() {
                 <h3>
                   Purchasing this NFT will grant you the following rewards with
                   the{" "}
-                  {nft.json.organisation
-                    ? nft.json.organisation
+                  {nft.json.attributes.find(
+                    (attribute) => attribute.trait_type === "organisation"
+                  )
+                    ? nft.json.attributes.find(
+                        (attribute) => attribute.trait_type === "organisation"
+                      ).value
                     : "Mauritius Nature Protection Society"}
                   :
                 </h3>
-                <ul>
-                  <li>
-                    Personalised site visit to see the imapct you have funded
-                  </li>
-                  <li>
-                    Opportunity to contribute to naming newborn/newfound animals
-                  </li>
-                </ul>
+                {nft.json.attributes[0].trait_type === "Youth" ? (
+                  <ul>
+                    <li>Monthly updates on the student&apos;s progress</li>
+                    <li>
+                      Personalised visits to the student&apos;s school and the
+                      conservation organisations offering work after education
+                    </li>
+                  </ul>
+                ) : (
+                  <ul>
+                    <li>
+                      Personalised site visit to see the imapct you have funded
+                    </li>
+                    <li>
+                      Opportunity to contribute to naming newborn/newfound
+                      animals
+                    </li>
+                  </ul>
+                )}
               </article>
             </article>
           </section>

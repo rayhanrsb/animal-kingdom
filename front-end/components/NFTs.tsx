@@ -13,6 +13,7 @@ const NFTs: FC = () => {
   const [animalNfts, setAnimalNfts] = useState([]);
   const [oceanNfts, setOceanNfts] = useState([]);
   const [landNfts, setLandNfts] = useState([]);
+  const [youthNfts, setYouthNfts] = useState([]);
   const walletAdapter = useWallet();
 
   const workspace = useWorkspace();
@@ -28,9 +29,13 @@ const NFTs: FC = () => {
     const newLandNfts = workspace.nfts.filter(
       (nft) => nft.json.attributes[0].trait_type === "Land"
     );
+    const newYouthNfts = workspace.nfts.filter(
+      (nft) => nft.json.attributes[0].trait_type === "Youth"
+    );
     setAnimalNfts(newAnimalNfts);
     setOceanNfts(newOceanNfts);
     setLandNfts(newLandNfts);
+    setYouthNfts(newYouthNfts);
     setLoading(false);
   }, [workspace]);
 
@@ -43,7 +48,17 @@ const NFTs: FC = () => {
       return (
         <article className="nft-detail">
           <p className="small">Protect it for</p>
-          <p className="small bold">1 Sol</p>
+          <p className="small bold">
+            {" "}
+            {nft.json.attributes.find(
+              (attribute) => attribute.trait_type === "price"
+            )
+              ? nft.json.attributes.find(
+                  (attribute) => attribute.trait_type === "price"
+                ).value
+              : 1}{" "}
+            Sol
+          </p>
         </article>
       );
     } else if (walletAdapter.connected && walletAdapter.publicKey) {
@@ -99,7 +114,18 @@ const NFTs: FC = () => {
                           {returnCta(nft)}
                           <article className="nft-detail">
                             <p className="small">Location</p>
-                            <p className="small bold">Mauritius</p>
+                            <p className="small bold">
+                              {" "}
+                              {nft.json.attributes.find(
+                                (attribute) =>
+                                  attribute.trait_type === "location"
+                              )
+                                ? nft.json.attributes.find(
+                                    (attribute) =>
+                                      attribute.trait_type === "location"
+                                  ).value
+                                : "Mauritius"}
+                            </p>
                           </article>
                         </article>
                       </article>
@@ -133,7 +159,18 @@ const NFTs: FC = () => {
                           {returnCta(nft)}
                           <article className="nft-detail">
                             <p className="small">Location</p>
-                            <p className="small bold">Mauritius</p>
+                            <p className="small bold">
+                              {" "}
+                              {nft.json.attributes.find(
+                                (attribute) =>
+                                  attribute.trait_type === "location"
+                              )
+                                ? nft.json.attributes.find(
+                                    (attribute) =>
+                                      attribute.trait_type === "location"
+                                  ).value
+                                : "Mauritius"}
+                            </p>
                           </article>
                         </article>
                       </article>
@@ -167,7 +204,63 @@ const NFTs: FC = () => {
                           {returnCta(nft)}
                           <article className="nft-detail">
                             <p className="small">Location</p>
-                            <p className="small bold">Mauritius</p>
+                            <p className="small bold">
+                              {" "}
+                              {nft.json.attributes.find(
+                                (attribute) =>
+                                  attribute.trait_type === "location"
+                              )
+                                ? nft.json.attributes.find(
+                                    (attribute) =>
+                                      attribute.trait_type === "location"
+                                  ).value
+                                : "Mauritius"}
+                            </p>
+                          </article>
+                        </article>
+                      </article>
+                    </article>
+                  </Link>
+                );
+              })}
+            </section>
+          </section>
+
+          {/* youthNfts section */}
+          <section className="nft-list white-background">
+            <h2>Educate our Youth</h2>
+            <section className="nft-row white-background">
+              {youthNfts.map((nft) => {
+                return (
+                  <Link
+                    href={`/${nft.mint.address.toString()}`}
+                    key={nft.address.toString()}
+                  >
+                    <article className="nft">
+                      <Image
+                        src={nft.json.image}
+                        height={100}
+                        width={100}
+                        alt={nft.json.description}
+                      />
+                      <article className="nft-text">
+                        <h3 className="medium-green">{nft.json.name}</h3>
+                        <article className="nft-details">
+                          {returnCta(nft)}
+                          <article className="nft-detail">
+                            <p className="small">Location</p>
+                            <p className="small bold">
+                              {" "}
+                              {nft.json.attributes.find(
+                                (attribute) =>
+                                  attribute.trait_type === "location"
+                              )
+                                ? nft.json.attributes.find(
+                                    (attribute) =>
+                                      attribute.trait_type === "location"
+                                  ).value
+                                : "Mauritius"}
+                            </p>
                           </article>
                         </article>
                       </article>

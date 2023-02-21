@@ -54,23 +54,23 @@ const getMasterEdition = async (
 };
 
 // Variables to change when running the script for various purposes
-const tokenName = "Mauritius Olive White-Eye";
+const tokenName = "Rayhan Beebeejaun";
 const description =
-  "An NFT to support the protection of a family of critically endangered Mauritius olive white-eye birds";
+  "A proof of concept NFT to support the education of Rayhan Beebeejaun and his subsequent placement in a conservation job";
 const symbol = "$ALKM";
 const sellerFeeBasisPoints = 100;
-const imageFile = "./assets/bird-1.jpg";
-const collectionName = "Animal Kingdom Animal"; // "Animal Kingdom Animal" or "Animal Kingdom Land" or "Animal Kingdom Oceans"
-const nftType = "Animal";
-const nftTypeValue = "Bird";
-const nickName = "Lacaze Zazou";
+const imageFile = "./assets/rayhan.png";
+const collectionName = "Animal Kingdom Youth"; // "Animal Kingdom Animal" or "Animal Kingdom Land" or "Animal Kingdom Oceans" or "Animal Kingdom Youth"
+const nftType = "Youth";
+const nftTypeValue = "Human";
+const nickName = "Rayhan";
 const location = "Mauritius";
-const organisation = "Mauritius Wildlife Protection"; // Fake demo organisations are Mauritius Wildlife Protection, Mauritius Nature Protection Society and Mauritius Marine Life Protection
+const organisation = "Youth for Conservation Organisation"; // Fake demo organisations are Mauritius Wildlife Protection, Mauritius Nature Protection Society, Mauritius Marine Life Protection and Youth for Conservation Organisation
 const organisationType = "NGO";
 const price = 1; // In Sol
-const duration = "1 year";
-const carbonOffset = 0;
-const animalsSaved = 5;
+const duration = "8 years";
+const carbonOffset = "N/A";
+const animalsSaved = "N/A";
 const organisationWalletAddress =
   "EoXeTQoYCaskdP4UrkMx93A43NaUuUQtYDBeXj2HEtLQ";
 
