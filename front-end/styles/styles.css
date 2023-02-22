@@ -159,6 +159,11 @@ header > .buttons > a {
   gap: 40px;
 }
 
+.nft-list > h2,
+.nft-list > p {
+  text-align: center;
+}
+
 .nft-row {
   width: 100%;
   display: flex;

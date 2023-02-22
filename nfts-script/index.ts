@@ -54,16 +54,16 @@ const getMasterEdition = async (
 };
 
 // Variables to change when running the script for various purposes
-const tokenName = "Rayhan Beebeejaun";
+const tokenName = "Tania";
 const description =
-  "A proof of concept NFT to support the education of Rayhan Beebeejaun and his subsequent placement in a conservation job";
+  "A proof of concept NFT to support the education of Tania and his subsequent placement in a conservation job";
 const symbol = "$ALKM";
 const sellerFeeBasisPoints = 100;
-const imageFile = "./assets/rayhan.png";
+const imageFile = "./assets/tania.png";
 const collectionName = "Animal Kingdom Youth"; // "Animal Kingdom Animal" or "Animal Kingdom Land" or "Animal Kingdom Oceans" or "Animal Kingdom Youth"
 const nftType = "Youth";
 const nftTypeValue = "Human";
-const nickName = "Rayhan";
+const nickName = "Tania";
 const location = "Mauritius";
 const organisation = "Youth for Conservation Organisation"; // Fake demo organisations are Mauritius Wildlife Protection, Mauritius Nature Protection Society, Mauritius Marine Life Protection and Youth for Conservation Organisation
 const organisationType = "NGO";

@@ -228,7 +228,12 @@ const NFTs: FC = () => {
 
           {/* youthNfts section */}
           <section className="nft-list white-background">
-            <h2>Educate our Youth</h2>
+            <h2>! New Feature !</h2>
+            <h2>Sponsor Youth Education</h2>
+            <p>
+              Sponor the education of an aspiring conservationist to learn and
+              be placed in a conservation job
+            </p>
             <section className="nft-row white-background">
               {youthNfts.map((nft) => {
                 return (
